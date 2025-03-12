@@ -295,7 +295,7 @@
 
 <Toaster position="bottom-right" />
 
-<div class="mx-auto flex flex-col gap-5 p-8">
+<div class="mx-auto flex flex-col gap-5 p-2 md:p-4 lg:p-8">
 	<h1 class="mb-2 text-2xl font-bold">Study Planning Generator</h1>
 
 	<div class="mb-2">
