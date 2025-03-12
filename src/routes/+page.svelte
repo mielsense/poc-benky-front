@@ -14,62 +14,61 @@
 	import { Toaster, toast } from 'svelte-sonner';
 
 	let calendarApp = $state(null);
-	let eventsService = $state(null);
 	let events = $state([]);
 	let isLoading = $state(false);
 	let userData = $state('');
 	let isAccordionOpen = $state(false);
 	let help = `{
-  "courses": ["Course1", "Course2", ...],       // Array of course names
-  "examDates": {                                // Object mapping courses to exam dates
-    "Course1": "YYYY-MM-DD",
-    "Course2": "YYYY-MM-DD"
-  },
-  "projects": {                                 // Optional - Project deadlines
-    "ProjectName": "YYYY-MM-DD"                 // Simple format
-    // OR with intensity
-    "ProjectName": {
-      "deadline": "YYYY-MM-DD",
-      "intensity": 1-5                          // 1=low, 5=high intensity
-    }
-  },
-  "currentEvents": [                            // Academic events
-    {
-      "title": "Event Name",
-      "date": "YYYY-MM-DD",
-      "start": "HH:MM",
-      "end": "HH:MM"
-    }
-  ],
-  "commitments": [                              // Personal commitments
-    {
-      "title": "Commitment Name",
-      "date": "YYYY-MM-DD",
-      "start": "HH:MM",
-      "end": "HH:MM"
-    }
-  ],
-  "persona": {                                  // Optional - Student personality/preferences
-    "type": "party-goer",                       // Options: "party-goer", "early-bird", "night-owl", etc.
-    "preferredStudyHours": {
-      "start": "HH:MM",
-      "end": "HH:MM"
-    },
-    "preferredFreeDays": ["Friday", "Saturday"],
-    "studyPreferences": {
-      "preferredSessionLength": "medium",       // "short", "medium", "long"
-      "maximumSessionsPerDay": 3
-    },
-    "customActivities": [                       // Regular weekly activities
-      {
-        "title": "Activity Name",
-        "dayOfWeek": "Monday",                  // Day of week this occurs
-        "start": "HH:MM",
-        "end": "HH:MM"
-      }
-    ]
-  }
-}`;
+        "courses": ["Course1", "Course2", ...],       // Array of course names
+        "examDates": {                                // Object mapping courses to exam dates
+            "Course1": "YYYY-MM-DD",
+            "Course2": "YYYY-MM-DD"
+        },
+        "projects": {                                 // Optional - Project deadlines
+            "ProjectName": "YYYY-MM-DD"                 // Simple format
+            // OR with intensity
+            "ProjectName": {
+            "deadline": "YYYY-MM-DD",
+            "intensity": 1-5                          // 1=low, 5=high intensity
+            }
+        },
+        "currentEvents": [                            // Academic events
+            {
+            "title": "Event Name",
+            "date": "YYYY-MM-DD",
+            "start": "HH:MM",
+            "end": "HH:MM"
+            }
+        ],
+        "commitments": [                              // Personal commitments
+            {
+            "title": "Commitment Name",
+            "date": "YYYY-MM-DD",
+            "start": "HH:MM",
+            "end": "HH:MM"
+            }
+        ],
+        "persona": {                                  // Optional - Student personality/preferences
+            "type": "party-goer",                       // Options: "party-goer", "early-bird", "night-owl", etc.
+            "preferredStudyHours": {
+            "start": "HH:MM",
+            "end": "HH:MM"
+            },
+            "preferredFreeDays": ["Friday", "Saturday"],
+            "studyPreferences": {
+            "preferredSessionLength": "medium",       // "short", "medium", "long"
+            "maximumSessionsPerDay": 3
+            },
+            "customActivities": [                       // Regular weekly activities
+            {
+                "title": "Activity Name",
+                "dayOfWeek": "Monday",                  // Day of week this occurs
+                "start": "HH:MM",
+                "end": "HH:MM"
+            }
+            ]
+        }
+    }`;
 
 	function formatDuration(durationString) {
 		if (durationString && typeof durationString === 'string') {
@@ -262,8 +261,6 @@
 			defaultView: 'week',
 			plugins: [eventsServicePlugin]
 		});
-
-		eventsService = calendarApp.eventsService;
 
 		try {
 			const response = await fetch('/data.json');
